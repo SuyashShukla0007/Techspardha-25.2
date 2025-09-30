@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Pricedown";
+  src: url("/src/assets/fonts/Pricedown.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rationale";
+  src: url("/src/assets/fonts/Rationale-Regular.ttf") format("truetype");
+}

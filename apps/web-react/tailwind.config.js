@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+        fontFamily: {
+        rationale: ["Rationale"],
+        gta: ["Pricedown"],
+      },
       colors:{
         primary:'#f77039',
         primaryBorder:'#ff5c00',
