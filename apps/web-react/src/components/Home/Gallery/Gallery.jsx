@@ -20,10 +20,8 @@ export default function Gallery() {
     animationDelay: `${delay}s`
   });
 
-  // Outer container: scale + primary color shadow
   const containerHover = "transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-[0_0_20px_#f77039]";
 
-  // Inner image: glitch animation on hover
   const imageHover = "hover:animate-glitch";
 
   return (
@@ -33,10 +31,9 @@ export default function Gallery() {
       <div className="w-[95vw] bg-customBlack rounded-xl">
         <div className="grid gap-3">
 
-          {/* Top row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
-              className={`md:col-span-2 border-2 border-white p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInLeft`}
+              className={`md:col-span-2 border-2 border-customGrey p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInLeft`}
               style={getAnimationStyle(0.1)}
             >
               <div className={`w-full h-full overflow-hidden ${imageHover}`}>
@@ -44,7 +41,7 @@ export default function Gallery() {
               </div>
             </div>
             <div
-              className={`md:col-span-1 border-2 border-white p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInRight`}
+              className={`md:col-span-1 border-2 border-customGrey p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInRight`}
               style={getAnimationStyle(0.2)}
             >
               <div className={`w-full h-full overflow-hidden ${imageHover}`}>
@@ -53,10 +50,9 @@ export default function Gallery() {
             </div>
           </div>
 
-          {/* Second row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
-              className={`md:col-span-1 border-2 border-white p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInLeft`}
+              className={`md:col-span-1 border-2 border-customGrey p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInLeft`}
               style={getAnimationStyle(0.3)}
             >
               <div className={`w-full h-full overflow-hidden ${imageHover}`}>
@@ -64,7 +60,7 @@ export default function Gallery() {
               </div>
             </div>
             <div
-              className={`md:col-span-2 border-2 border-white p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInRight`}
+              className={`md:col-span-2 border-2 border-customGrey p-0 rounded-xl ${smallHeight} overflow-hidden ${containerHover} animate-slideInRight`}
               style={getAnimationStyle(0.4)}
             >
               <div className={`w-full h-full overflow-hidden ${imageHover}`}>
@@ -73,10 +69,9 @@ export default function Gallery() {
             </div>
           </div>
 
-          {/* Third row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
-              className={`border-2 border-white p-0 rounded-xl ${largeHeight} overflow-hidden ${containerHover} animate-slideInLeft`}
+              className={`border-2 border-customGrey p-0 rounded-xl ${largeHeight} overflow-hidden ${containerHover} animate-slideInLeft`}
               style={getAnimationStyle(0.5)}
             >
               <div className={`w-full h-full overflow-hidden ${imageHover}`}>
@@ -88,7 +83,7 @@ export default function Gallery() {
               {[5, 6, 7, 8].map((idx, i) => (
                 <div
                   key={idx}
-                  className={`border-2 border-white rounded-xl overflow-hidden h-52 ${containerHover} animate-slideInRight`}
+                  className={`border-2 border-customGrey rounded-xl overflow-hidden h-52 ${containerHover} animate-slideInRight`}
                   style={getAnimationStyle(0.6 + i * 0.1)}
                 >
                   <div className={`w-full h-full overflow-hidden ${imageHover}`}>

@@ -45,7 +45,7 @@ export default {
   plugins: [],
   variants: {
     extend: {
-      animation: ['hover'], // enables hover:animate-glitch
+      animation: ['hover'],
     },
   },
 }
