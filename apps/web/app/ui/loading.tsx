@@ -1,1 +1,0 @@
-// Purpose: To provide a loading screen for the application.
