@@ -31,8 +31,8 @@ export default {
         glitch: 'glitch 0.5s infinite',
       },
       fontFamily: {
-        rationale: ["Rationale"],
-        gta: ["Pricedown"],
+        rationale: ["Rationale",'sans-serif'],
+        gta: ["Pricedown",'sans-serif'],
       },
       colors:{
         primary:'#f77039',
