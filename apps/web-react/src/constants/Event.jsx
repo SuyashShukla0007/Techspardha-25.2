@@ -18,7 +18,7 @@ export const EVENTS = [
     venue: "Online",
     date: "",
     category: "Programming",
-    image: "events2.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -29,7 +29,7 @@ export const EVENTS = [
     venue: "Tech Hub, Downtown",
     date: "",
     category: "Programming",
-    image: "events.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -40,7 +40,7 @@ export const EVENTS = [
     venue: "Design Center, City Hall",
     date: "",
     category: "Design",
-    image: "carouselEvent.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -51,7 +51,7 @@ export const EVENTS = [
     venue: "Marketing Arena, Block B",
     date: "",
     category: "Managerial",
-    image: "events2.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpgevents2.png",
     registerlink: "",
     detailedlink: ""
   },
@@ -62,7 +62,7 @@ export const EVENTS = [
     venue: "Startup Pavilion, Floor 2",
     date: "",
     category: "Managerial",
-    image: "carouselEvent.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -73,7 +73,7 @@ export const EVENTS = [
     venue: "Innovation Center, Hall A",
     date: "",
     category: "Programming",
-    image: "events.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -84,7 +84,7 @@ export const EVENTS = [
     venue: "Dev Hub, Room 101",
     date: "",
     category: "Programming",
-    image: "events2.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -95,7 +95,7 @@ export const EVENTS = [
     venue: "Marketing Hub, Wing C",
     date: "",
     category: "Managerial",
-    image: "carouselEvent.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },
@@ -106,7 +106,7 @@ export const EVENTS = [
     venue: "Tech Valley, Room 202",
     date: "",
     category: "Programming",
-    image: "events.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   }
