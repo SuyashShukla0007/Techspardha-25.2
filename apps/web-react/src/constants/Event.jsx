@@ -51,7 +51,7 @@ export const EVENTS = [
     venue: "Marketing Arena, Block B",
     date: "March 19, 2:00 PM",
     category: "Managerial",
-    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpgevents2.png",
+    image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/01/30125224/27021837_10155222741492592_934655472329493290_o.jpg",
     registerlink: "",
     detailedlink: ""
   },

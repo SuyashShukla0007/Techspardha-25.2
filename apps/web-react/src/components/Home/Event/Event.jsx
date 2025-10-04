@@ -43,7 +43,7 @@ function Event() {
     <div style={customBackgroundStyle} className="font-sans">
       {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-6xl font-extrabold tracking-widest mb-4 uppercase text-orange-500">
+        <h2 className="text-6xl font-gta tracking-widest mb-4 uppercase text-orange-500">
           EVENTS
         </h2>
         <p className="text-gray-300 text-lg">
@@ -65,7 +65,7 @@ function Event() {
       {/* Single View All Events Button */}
       <div className="mt-20 flex justify-center">
         <div className={viewAllContainerClass}>
-          <a href="#view-all-events" className={viewAllButtonStyle}>
+          <a href="/events" className={viewAllButtonStyle}>
             View All Events
             <svg
               className="w-4 h-4 ml-1"
