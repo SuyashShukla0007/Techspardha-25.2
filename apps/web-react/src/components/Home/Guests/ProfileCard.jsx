@@ -11,7 +11,7 @@ function ProfileCard({
     const[hovered,sethovered]=useState(false);
     return(
         
-    <div className={`w-[410px] h-[440px] rounded-[24px] border-[11px] border-[#2C2C2E] overflow-hidden bg-[#2C2C2E] hover:border-[#F77039] ${hovered?'shadow-2xl':''} shadow-[#F77039] shadow-rounded transition-transform transform duration-500 hover:scale-104 z-10`} onMouseEnter={()=>sethovered(true)} onMouseLeave={()=>sethovered(false)}>
+    <div className={`w-[90vw] md:w-[410px] h-[440px] rounded-[24px] border-[11px] border-[#2C2C2E] overflow-hidden bg-[#2C2C2E] hover:border-[#F77039] ${hovered?'shadow-2xl':''} shadow-[#F77039] shadow-rounded transition-transform transform duration-500 hover:scale-104 z-10`} onMouseEnter={()=>sethovered(true)} onMouseLeave={()=>sethovered(false)}>
       <div
         className="h-full w-full bg-cover relative"
         style={{ backgroundImage: `url(${imageUrl})` }}

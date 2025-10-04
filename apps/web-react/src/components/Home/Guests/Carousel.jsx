@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import ProfileCard from "./ProfileCard";
 
-// A helper function to prevent the resize event from firing too often
+// (Debounce function remains the same)
 function debounce(func, delay) {
   let timeoutId;
   return function(...args) {
@@ -17,13 +17,26 @@ function Carousel({
 }) {
   const [paused, setPaused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(3);
-  const [current, setCurrent] = useState(0);
   const carouselRef = useRef(null);
 
-  useEffect(() => {
-    // 👇 FIX: Reduced width to allow 3 cards in a 1152px container
-    const SINGLE_CARD_WIDTH = 440; // (1152px / 3 = 384px)
+  // 1. CREATE A NEW ARRAY WITH CLONED SLIDES AT THE START AND END
+  const loopedItems = useMemo(() => {
+    if (items.length > 0) {
+      const startClones = items.slice(items.length - visibleCount);
+      const endClones = items.slice(0, visibleCount);
+      return [...startClones, ...items, ...endClones];
+    }
+    return [];
+  }, [items, visibleCount]);
 
+  // 2. START AT THE FIRST 'REAL' SLIDE (AFTER THE START CLONES)
+  const [current, setCurrent] = useState(visibleCount);
+  
+  // 3. ADD STATE TO MANAGE TRANSITIONS FOR THE 'SILENT JUMP'
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  useEffect(() => {
+    const SINGLE_CARD_WIDTH = 440;
     const updateVisibleCount = () => {
       if (carouselRef.current) {
         const containerWidth = carouselRef.current.offsetWidth;
@@ -31,29 +44,40 @@ function Carousel({
         setVisibleCount(Math.max(1, newVisibleCount));
       }
     };
-
     const debouncedUpdate = debounce(updateVisibleCount, 250);
     updateVisibleCount();
     window.addEventListener("resize", debouncedUpdate);
     return () => window.removeEventListener("resize", debouncedUpdate);
   }, []);
 
-  useEffect(() => {
-    setCurrent(0);
-  }, [visibleCount]);
-
-  // Minor cleanup: Removed redundant Math.ceil
-  const nextSlide = useCallback(() => {
-    setCurrent((prev) =>
-      prev >= items.length - visibleCount ? 0 : prev + 1
-    );
-  }, [items.length, visibleCount]);
+  const nextSlide = () => {
+    setCurrent((prev) => prev + 1);
+  };
 
   const prevSlide = () => {
-    setCurrent((prev) =>
-      prev === 0 ? items.length - visibleCount : prev - 1
-    );
+    setCurrent((prev) => prev - 1);
   };
+
+  // 4. HANDLE THE 'SILENT JUMP' AFTER THE TRANSITION TO A CLONE ENDS
+  const handleTransitionEnd = () => {
+    if (current >= items.length + visibleCount) {
+      setIsTransitioning(false); // Disable transition
+      setCurrent(visibleCount); // Jump to the first real slide
+    }
+    if (current <= visibleCount - 1) {
+      setIsTransitioning(false); // Disable transition
+      setCurrent(items.length + visibleCount - 1); // Jump to the last real slide
+    }
+  };
+
+  // 5. RE-ENABLE TRANSITIONS AFTER A SILENT JUMP
+  useEffect(() => {
+    if (!isTransitioning) {
+      // A tiny delay to allow React to update the DOM before re-enabling the transition
+      const timer = setTimeout(() => setIsTransitioning(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
 
   useEffect(() => {
     if (!autoSlide || paused) return;
@@ -74,23 +98,29 @@ function Carousel({
         onMouseLeave={() => setPaused(false)}
       >
         <div
-          className="flex transition-transform duration-700 w-full justify-around"
+          className="flex w-full"
+          onTransitionEnd={handleTransitionEnd} // Attach the transition end handler
           style={{
-            transform: `translateX(-${current * (100 / visibleCount)}%)`,
+            // Use the new array length for the total width
+            width: `${(100 * loopedItems.length) / visibleCount}%`, 
+            // The transition is now controlled by state
+            transition: isTransitioning ? "transform 0.7s ease-in-out" : "none",
+            transform: `translateX(-${(current * 100) / loopedItems.length}%)`,
           }}
         >
-
-          {items.map((item, idx) => (
+          {loopedItems.map((item, idx) => (
             <div
               key={idx}
-              className="pb-10  flex justify-around pt-5 hover:scale-105 shadow-xl  transition-transform transform duration-200 "
-              style={{ flex: `0 0 ${100 / visibleCount}%` }}
+              className="box-border p-2" // Cleaned up layout classes
+              style={{ flex: `0 0 ${100 / loopedItems.length}%` }}
             >
+              <div className="h-full transform transition-transform duration-200 hover:scale-105 w-full flex justify-around">
                 <ProfileCard
                   name={item.name}
                   description={item.description}
                   imageUrl={item.imageUrl}
                 />
+              </div>
             </div>
           ))}
         </div>
