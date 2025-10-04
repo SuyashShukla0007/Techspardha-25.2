@@ -23,10 +23,10 @@ function EventContainer() {
               aria-haspopup="listbox"
               aria-expanded={dropdownOpen}
               onClick={() => setDropdownOpen((s) => !s)}
-              className="w-56 flex items-center justify-between bg-transparent border border-white/20 text-white p-4 rounded-md">
+              className="w-56 flex items-center justify-between bg-transparent border border-white/20 text-white p-4 rounded-md transition-colors duration-300 ease-out motion-reduce:transition-none">
               <span className="truncate">{selectedCategory}</span>
               <svg
-                className={`ml-2 h-4 w-4 text-white transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+                className={`ml-2 h-4 w-4 text-white transition-transform duration-300 motion-reduce:transition-none ${dropdownOpen ? 'rotate-180' : ''}`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -46,7 +46,7 @@ function EventContainer() {
                   <li key={cat.id} role="option">
                     <button
                       onClick={() => { setSelectedCategory(cat.name); setDropdownOpen(false); }}
-                      className="w-full text-left truncate hover:overflow-visible hover:bg-[#FF5C00] p-4 rounded-md hover:shadow-[0_0_9px_rgba(255,92,0,0.8)]"
+                      className={`w-full text-left truncate min-w-[80px] max-w-full p-4 rounded-md transform transition duration-200 ease-out motion-reduce:transition-none hover:scale-[1.02] hover:bg-[#FF5C00] hover:shadow-[0_0_9px_rgba(255,92,0,0.8)]`}
                     >
                       {cat.name}
                     </button>
@@ -61,8 +61,8 @@ function EventContainer() {
         <div className='hidden sm:block mt-8 border-[0.8px] border-white/20 w-max mx-auto text-center rounded-md'>
           <ul className='inline-flex items-center'>
             {category.map((cat) => (
-              <li key={cat.id} className="inline m-2">
-                <button onClick={onclickHandler} className='truncate w-[8vw] hover:w-auto hover:overflow-visible hover:bg-[#FF5C00] p-4 rounded-md hover:shadow-[0_0_9px_rgba(255,92,0,0.8)]'>
+              <li key={cat.id} className="inline p-2">
+                <button onClick={onclickHandler} className='truncate w-[8vw] hover:w-auto hover:overflow-visible hover:bg-[#FF5C00] p-4 rounded-md hover:shadow-[0_0_9px_rgba(255,92,0,0.8)] transition-colors transition-[width] duration-200 ease-out motion-reduce:transition-none'>
                   {cat.name}
                 </button>
               </li>

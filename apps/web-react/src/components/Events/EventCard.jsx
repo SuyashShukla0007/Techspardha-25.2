@@ -12,20 +12,20 @@ const Button = ({ text, redirect }) => {
       <span className="relative z-10">{text}</span>
 
       {/* Top Left */}
-      <span className="absolute top-0 left-0 w-3 h-1 bg-orange-600"></span>
-      <span className="absolute top-0 left-0 w-1 h-3 bg-orange-600"></span>
+      <span className="absolute top-0 left-0 w-3 h-[0.8px] bg-orange-600"></span>
+      <span className="absolute top-0 left-0 w-[0.8px] h-3 bg-orange-600"></span>
 
       {/* Top Right */}
-      <span className="absolute top-0 right-0 w-3 h-1 bg-orange-600"></span>
-      <span className="absolute top-0 right-0 w-1 h-3 bg-orange-600"></span>
+      <span className="absolute top-0 right-0 w-3 h-[0.8px] bg-orange-600"></span>
+      <span className="absolute top-0 right-0 w-[0.8px] h-3 bg-orange-600"></span>
 
       {/* Bottom Left */}
-      <span className="absolute bottom-0 left-0 w-3 h-1 bg-orange-600"></span>
-      <span className="absolute bottom-0 left-0 w-1 h-3 bg-orange-600"></span>
+      <span className="absolute bottom-0 left-0 w-3 h-[0.8px] bg-orange-600"></span>
+      <span className="absolute bottom-0 left-0 w-[0.8px] h-3 bg-orange-600"></span>
 
       {/* Bottom Right */}
-      <span className="absolute bottom-0 right-0 w-3 h-1 bg-orange-600"></span>
-      <span className="absolute bottom-0 right-0 w-1 h-3 bg-orange-600"></span>
+      <span className="absolute bottom-0 right-0 w-3 h-[0.8px] bg-orange-600"></span>
+      <span className="absolute bottom-0 right-0 w-[0.8px] h-3 bg-orange-600"></span>
     </a>
   );
 };
@@ -41,6 +41,10 @@ function EventCard({
   registerlink,
   detailedlink,
 }) {
+  const handleTagClick = (tagName) => {
+    alert(`Clicked on '${tagName}' category!`);
+  };
+
   const tagStyle =
     "bg-[#252525] text-gray-200 border border-gray-600/50 shadow-lg shadow-black/50";
 
@@ -52,6 +56,7 @@ function EventCard({
     {category && (
       <span
         className={`absolute top-2 right-2 text-xs font-light px-3 py-1 rounded-full cursor-pointer hover:opacity-80 transition-colors uppercase ${tagStyle}`}
+        onClick={() => handleTagClick(category)}
       >
         {category}
       </span>
