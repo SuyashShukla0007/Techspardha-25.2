@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Pricedown";
-  src: url("/src/assets/fonts/Pricedown.ttf") format("truetype");
+  font-family: 'Pricedown';
+  src: url('/fonts/pricedown.woff2') format('woff2'),
+       url('/fonts/pricedown.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: "Rationale";
-  src: url("/src/assets/fonts/Rationale-Regular.ttf") format("truetype");
+  font-family: 'Rationale';
+  src: url('/fonts/Rationale.woff2') format('woff2'),
+       url('/fonts/Rationale.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
