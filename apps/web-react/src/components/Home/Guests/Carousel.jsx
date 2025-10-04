@@ -114,7 +114,7 @@ function Carousel({
               className="box-border p-2" // Cleaned up layout classes
               style={{ flex: `0 0 ${100 / loopedItems.length}%` }}
             >
-              <div className="h-full transform transition-transform duration-200 hover:scale-105 w-full flex justify-around">
+              <div className="h-full transform transition-transform duration-200  w-full flex justify-around">
                 <ProfileCard
                   name={item.name}
                   description={item.description}
