@@ -7,7 +7,7 @@ const Button = ({ text, redirect }) => {
       href={redirect }
       target="_blank"
       rel="noopener noreferrer"
-      className="relative inline-block bg-[#3a220c] text-white px-8 py-3 text-lg font-mono tracking-wide hover:bg-[#482d1a] transition-colors duration-200"
+      className="relative flex items-center justify-center bg-[#3a220c] text-white px-8 py-3 text-lg font-mono tracking-wide hover:bg-[#482d1a] transition-colors duration-200"
     >
       <span className="relative z-10">{text}</span>
 
