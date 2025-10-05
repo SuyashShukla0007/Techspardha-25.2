@@ -57,7 +57,7 @@ const FAQ = () => {
         </div>
         
         <div className="w-full max-w-[1200px]">
-          <div className="flex flex-col gap-[30px] items-start min-h-[600px] md:flex-row gap-y-5 md:gap-x-[30px]">
+          <div className="flex flex-col gap-[30px] min-h-[600px] md:flex-row md:gap-x-[30px] md:items-stretch">
             <div className="flex-1 flex flex-col gap-5">
               {leftFaqs.map((faq, index) => (
                 <div
