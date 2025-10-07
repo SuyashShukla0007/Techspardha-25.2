@@ -56,15 +56,6 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    if (openIndex && itemRefs.current[openIndex]) {
-      itemRefs.current[openIndex].scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  }, [openIndex]);
-
   const renderFAQ = (faq, key) => (
     <div
       key={key}
