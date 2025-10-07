@@ -588,6 +588,15 @@
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@repo/eslint-config@*", "@repo/eslint-config@file:C:\\Users\\khemg\\OneDrive\\Documents\\GitHub\\Techspardha-25.2\\packages\\eslint-config":
+  version "0.0.0"
+  resolved "file:packages/eslint-config"
+
+"@repo/typescript-config@*", "@repo/typescript-config@file:C:\\Users\\khemg\\OneDrive\\Documents\\GitHub\\Techspardha-25.2\\packages\\typescript-config":
+  version "0.0.0"
+  resolved "file:packages/typescript-config"
+
+"@repo/ui@*", "@repo/ui@file:C:\\Users\\khemg\\OneDrive\\Documents\\GitHub\\Techspardha-25.2\\packages\\ui":
 "@repo/eslint-config@*", "@repo/eslint-config@file:C:\\Users\\akashdeep\\OneDrive\\Desktop\\Freelancing\\New folder\\Techspardha-25.2\\packages\\eslint-config":
   version "0.0.0"
   resolved "file:packages/eslint-config"
@@ -2097,6 +2106,7 @@ esutils@^2.0.2:
   resolved "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
 
+"excalibur@file:C:\\Users\\khemg\\OneDrive\\Documents\\GitHub\\Techspardha-25.2\\apps\\excalibur":
 "excalibur@file:C:\\Users\\akashdeep\\OneDrive\\Desktop\\Freelancing\\New folder\\Techspardha-25.2\\apps\\excalibur":
   version "0.0.0"
   resolved "file:apps/excalibur"
@@ -2505,6 +2515,7 @@ graphemer@^1.4.0:
   resolved "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
+"hackshetra@file:C:\\Users\\khemg\\OneDrive\\Documents\\GitHub\\Techspardha-25.2\\apps\\hackshetra":
 "hackshetra@file:C:\\Users\\akashdeep\\OneDrive\\Desktop\\Freelancing\\New folder\\Techspardha-25.2\\apps\\hackshetra":
   version "0.0.0"
   resolved "file:apps/hackshetra"
@@ -4801,6 +4812,7 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
+"web-react@file:C:\\Users\\khemg\\OneDrive\\Documents\\GitHub\\Techspardha-25.2\\apps\\web-react":
 "web-react@file:C:\\Users\\akashdeep\\OneDrive\\Desktop\\Freelancing\\New folder\\Techspardha-25.2\\apps\\web-react":
   version "0.0.0"
   resolved "file:apps/web-react"
