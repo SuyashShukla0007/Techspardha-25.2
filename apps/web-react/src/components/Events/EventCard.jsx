@@ -41,9 +41,6 @@ function EventCard({
   registerlink,
   detailedlink,
 }) {
-  const handleTagClick = (tagName) => {
-    alert(`Clicked on '${tagName}' category!`);
-  };
 
   const tagStyle =
     "bg-[#252525] text-gray-200 border border-gray-600/50 shadow-lg shadow-black/50";
@@ -56,7 +53,6 @@ function EventCard({
     {category && (
       <span
         className={`absolute top-2 right-2 text-xs font-light px-3 py-1 rounded-full cursor-pointer hover:opacity-80 transition-colors uppercase ${tagStyle}`}
-        onClick={() => handleTagClick(category)}
       >
         {category}
       </span>
