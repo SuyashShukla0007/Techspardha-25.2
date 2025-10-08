@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "./ProfileCard"; // Make sure this path is correct
 
-// (Debounce function remains the same)
+// Debounce function for resizing
 function debounce(func, delay) {
   let timeoutId;
   return function(...args) {
@@ -12,134 +12,159 @@ function debounce(func, delay) {
 
 function Carousel({
   items,
+  isLoading,
   autoSlide = true,
   interval = 4000,
+  cardWidth = 440,
 }) {
+  // State for the post-loading slide-in animation
+  const [show, setShow] = useState(false);
+
+  // States for carousel functionality
   const [paused, setPaused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(3);
   const carouselRef = useRef(null);
-
-  // 1. CREATE A NEW ARRAY WITH CLONED SLIDES AT THE START AND END
+  
+  // Create looped items for infinite scroll effect
   const loopedItems = useMemo(() => {
-    if (items.length > 0) {
+    if (items && items.length > 0 && items.length > visibleCount) {
       const startClones = items.slice(items.length - visibleCount);
       const endClones = items.slice(0, visibleCount);
       return [...startClones, ...items, ...endClones];
     }
-    return [];
+    return items || [];
   }, [items, visibleCount]);
 
-  // 2. START AT THE FIRST 'REAL' SLIDE (AFTER THE START CLONES)
+  // State for the current slide index and managing transitions for the loop
   const [current, setCurrent] = useState(visibleCount);
-  
-  // 3. ADD STATE TO MANAGE TRANSITIONS FOR THE 'SILENT JUMP'
   const [isTransitioning, setIsTransitioning] = useState(true);
 
+  // Effect to handle the post-loading animation
   useEffect(() => {
-    const SINGLE_CARD_WIDTH = 440;
+    if (isLoading) return; // Do nothing if still loading
+    const timer = setTimeout(() => {
+      setShow(true);
+    }, 100); // Small delay to trigger the transition
+    return () => clearTimeout(timer);
+  }, [isLoading]);
+
+  // Effect to calculate how many cards are visible on resize
+  useEffect(() => {
     const updateVisibleCount = () => {
       if (carouselRef.current) {
         const containerWidth = carouselRef.current.offsetWidth;
-        const newVisibleCount = Math.floor(containerWidth / SINGLE_CARD_WIDTH);
-        setVisibleCount(Math.max(1, newVisibleCount));
+        const newVisibleCount = Math.floor(containerWidth / cardWidth);
+        const newCount = Math.max(1, newVisibleCount);
+        setVisibleCount(newCount);
+        setCurrent(newCount); // Reset position on resize for stability
       }
     };
     const debouncedUpdate = debounce(updateVisibleCount, 250);
     updateVisibleCount();
     window.addEventListener("resize", debouncedUpdate);
     return () => window.removeEventListener("resize", debouncedUpdate);
-  }, []);
+  }, [cardWidth]);
 
-  const nextSlide = () => {
+  // Navigation functions
+  const nextSlide = useCallback(() => {
+    if (!isTransitioning) return;
     setCurrent((prev) => prev + 1);
-  };
+  }, [isTransitioning]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
+    if (!isTransitioning) return;
     setCurrent((prev) => prev - 1);
-  };
+  }, [isTransitioning]);
 
-  // 4. HANDLE THE 'SILENT JUMP' AFTER THE TRANSITION TO A CLONE ENDS
+  // Handler for the "magic jump" after a transition to a cloned slide ends
   const handleTransitionEnd = () => {
-    if (current >= items.length + visibleCount) {
-      setIsTransitioning(false); // Disable transition
-      setCurrent(visibleCount); // Jump to the first real slide
-    }
-    if (current <= visibleCount - 1) {
-      setIsTransitioning(false); // Disable transition
-      setCurrent(items.length + visibleCount - 1); // Jump to the last real slide
+    if (items && items.length > 0) {
+        if (current >= items.length + visibleCount) {
+            setIsTransitioning(false);
+            setCurrent(visibleCount);
+        }
+        if (current <= visibleCount - 1) {
+            setIsTransitioning(false);
+            setCurrent(items.length + visibleCount - 1);
+        }
     }
   };
 
-  // 5. RE-ENABLE TRANSITIONS AFTER A SILENT JUMP
+  // Re-enable transitions after a "magic jump"
   useEffect(() => {
     if (!isTransitioning) {
-      // A tiny delay to allow React to update the DOM before re-enabling the transition
       const timer = setTimeout(() => setIsTransitioning(true), 50);
       return () => clearTimeout(timer);
     }
   }, [isTransitioning]);
 
+  // Auto-slide functionality
   useEffect(() => {
-    if (!autoSlide || paused) return;
-    const slide = setInterval(nextSlide, interval);
-    return () => clearInterval(slide);
-  }, [paused, autoSlide, interval, nextSlide]);
+    if (!autoSlide || paused || !items || items.length === 0) return;
+    const slideInterval = setInterval(nextSlide, interval);
+    return () => clearInterval(slideInterval);
+  }, [paused, autoSlide, interval, nextSlide, items]);
 
   return (
-    <div className="flex flex-col gap-8 w-full mx-auto">
-      <div className="text-4xl md:text-5xl font-bold w-full text-center mb-4 text-[#F77039] underline text-shadow-xl text-shadow-[#F77039]">
-        Guest Lectures
-      </div>
-
-      <div
-        ref={carouselRef}
-        className="relative w-full overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div
-          className="flex w-full"
-          onTransitionEnd={handleTransitionEnd} // Attach the transition end handler
-          style={{
-            // Use the new array length for the total width
-            width: `${(100 * loopedItems.length) / visibleCount}%`, 
-            // The transition is now controlled by state
-            transition: isTransitioning ? "transform 0.7s ease-in-out" : "none",
-            transform: `translateX(-${(current * 100) / loopedItems.length}%)`,
-          }}
-        >
-          {loopedItems.map((item, idx) => (
-            <div
-              key={idx}
-              className="box-border p-2" // Cleaned up layout classes
-              style={{ flex: `0 0 ${100 / loopedItems.length}%` }}
-            >
-              <div className="h-full transform transition-transform duration-200  w-full flex justify-around">
-                <ProfileCard
-                  name={item.name}
-                  description={item.description}
-                  imageUrl={item.imageUrl}
-                />
-              </div>
-            </div>
-          ))}
+    <div
+      className={`
+        transition-all duration-700 ease-out 
+        ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}
+      `}
+    >
+      <div className="flex flex-col gap-8 w-full mx-auto">
+        <div className="text-4xl md:text-5xl font-bold w-full text-center mb-4 text-[#F77039] underline text-shadow-xl text-shadow-[#F77039]">
+          Guest Lectures
         </div>
 
-        {/* Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white rounded-full h-10 w-10 md:h-12 md:w-12 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
-          aria-label="Previous Slide"
+        <div
+          ref={carouselRef}
+          className="relative w-full overflow-hidden"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          &lt;
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white rounded-full h-10 w-10 md:h-12 md:w-12 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
-          aria-label="Next Slide"
-        >
-          &gt;
-        </button>
+          <div
+            className="flex w-full"
+            onTransitionEnd={handleTransitionEnd}
+            style={{
+              width: loopedItems.length > 0 ? `${(100 * loopedItems.length) / visibleCount}%` : '100%',
+              transition: isTransitioning ? "transform 0.7s ease-in-out" : "none",
+              transform: loopedItems.length > 0 ? `translateX(-${(current * 100) / loopedItems.length}%)` : 'translateX(0)',
+            }}
+          >
+            {loopedItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="box-border p-5"
+                style={{ flex: loopedItems.length > 0 ? `0 0 ${100 / loopedItems.length}%` : '0 0 100%' }}
+              >
+                <div className="h-full transform transition-transform duration-500 w-full flex justify-around  hover:scale-105 hover:-translate-y-2">
+                  <ProfileCard
+                    name={item.name}
+                    description={item.description}
+                    imageUrl={item.imageUrl}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white rounded-full h-10 w-10 md:h-12 md:w-12 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
+            aria-label="Previous Slide"
+          >
+            &lt;
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white rounded-full h-10 w-10 md:h-12 md:w-12 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
+            aria-label="Next Slide"
+          >
+            &gt;
+          </button>
+        </div>
       </div>
     </div>
   );
