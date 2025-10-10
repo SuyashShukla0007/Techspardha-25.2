@@ -40,15 +40,11 @@ function Home() {
   return (
     <div className='bg-black w-full overflow-x-hidden'>
       <CountdownTimer />
-      
- 
       <Gallery />
       <Carousel items={cards} /> 
       <Event />
       <Developer />
-     
       <AboutUs /> 
-      
       <FAQ />
       <Footer />
     </div>
