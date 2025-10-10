@@ -57,18 +57,43 @@ function EventContainer() {
           </div>
         </div>
 
-        {/* Desktop and larger: inline button list */}
-        <div className='hidden sm:block mt-8 border-[0.8px] border-white/20 w-max mx-auto text-center rounded-md'>
-          <ul className='inline-flex items-center'>
-            {category.map((cat) => (
-              <li key={cat.id} className="inline p-2">
-                <button onClick={onclickHandler} className='truncate w-[8vw] hover:w-auto hover:overflow-visible hover:bg-[#FF5C00] p-4 rounded-md hover:shadow-[0_0_9px_rgba(255,92,0,0.8)] transition-colors transition-[width] duration-200 ease-out motion-reduce:transition-none'>
-                  {cat.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+ {/* Desktop and larger: inline button list with smooth hover animations */}
+<div className="hidden sm:block mt-8 border border-white/20 w-max mx-auto text-center rounded-full drop-shadow-md bg-[#15130F]/70 backdrop-blur-md">
+  <ul className="inline-flex items-center p-2 gap-2 xl:gap-3">
+    {category.map((cat) => (
+      <li key={cat.id}>
+        <button
+          onClick={onclickHandler}
+          className={`
+            group relative rounded-full px-4 py-2 
+            text-[clamp(0.75rem,1.5vw,1rem)] 
+            text-white/90 font-medium 
+            transition-all duration-300 ease-in-out 
+            hover:bg-[#FF5C00] hover:text-white
+            hover:shadow-[0_0_9px_rgba(255,92,0,0.8)]
+          `}
+        >
+          <span
+            className="block max-w-[6rem] truncate transition-all duration-300 ease-in-out group-hover:max-w-[14rem]"
+            style={{ minWidth: '0' }}
+          >
+            {cat.name}
+          </span>
+
+          {/* Optional subtle underline animation like a focus highlight */}
+          <span
+            className="
+              absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 
+              bg-white/70 transition-all duration-300 ease-in-out 
+              group-hover:w-[60%]
+            "
+          />
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
         <div className="inline-flex flex-wrap justify-center mt-10 mb-10 align-middle gap-8 px-4 w-full">
           {EVENTS.filter((event)=>{
             if(selectedCategory==='All'){
