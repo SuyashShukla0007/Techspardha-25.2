@@ -9,6 +9,7 @@ import FAQ from '../components/Home/FAQ/FAQ.jsx'
 import AboutUs from '../components/Home/AboutUs/AboutUs.jsx' 
 
 import Footer from '../components/Global/Footer/footer.jsx';
+import Sponsors from '../components/Home/Sponsors/Sponsors.jsx'
 
 function Home() {
   const cards = [{
@@ -42,8 +43,8 @@ function Home() {
       <CountdownTimer />
       <Gallery />
       <Carousel items={cards} /> 
+      <Sponsors />
       <Event />
-      <Developer />
       <AboutUs /> 
       <FAQ />
       <Footer />
