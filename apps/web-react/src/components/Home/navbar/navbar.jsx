@@ -7,9 +7,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-black flex items-center justify-center py-10">
-      {/* Navbar container */}
-      <div className="bg-[#2b2b28] text-white px-3 py-2 rounded-full flex items-center justify-between w-[55%] max-w-5xl shadow-[0_0_10px_2px_rgba(255,140,0,0.8)]">
+  // Make navbar overlay the Hero: absolute with a small gap from the top
+  <nav className="absolute top-4 md:top-6 left-0 w-full z-30 flex items-center justify-center pointer-events-auto">
+      {/* Navbar container (semi-transparent so hero is visible behind) */}
+      <div className="bg-black/40 text-white px-3 py-2 rounded-full flex items-center justify-between w-[55%] max-w-5xl shadow-[0_0_10px_2px_rgba(255,140,0,0.8)] backdrop-blur-sm">
 
         
         {/* Hamburger for mobile */}
