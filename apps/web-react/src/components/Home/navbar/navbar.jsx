@@ -89,7 +89,7 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`sticky top-0 text-white px-3 py-2 rounded-full flex items-center justify-between max-w-5xl shadow-[0_0_10px_2px_rgba(255,140,0,0.8)] ${
+        className={`sticky top-0 text-white px-3 py-2 rounded-full flex items-center justify-between w-full sm:w-auto md:max-w-5xl shadow-[0_0_10px_2px_rgba(255,140,0,0.8)] ${
           isScrolled ? "bg-black/40 backdrop-blur-sm" : "bg-[#2b2b28]"
         }`}
       >
