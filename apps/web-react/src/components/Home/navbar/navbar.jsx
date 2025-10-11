@@ -1,16 +1,19 @@
 // src/components/Home/navbar/navbar.jsx
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/photos/logo.png";
 
 const NAV_LINKS = [
   { to: "/events", label: "Events" },
   { to: "/teams", label: "Team" },
   { to: "/developer", label: "Developers" },
-  { to: "/guests", label: "Lectures" },
-  { to: "/sponsors", label: "Sponsors" },
-  { to: "/about", label: "About Us" },
+];
+
+const SCROLL_LINKS = [
+  { section: "guests", label: "Lectures" },
+  { section: "sponsors", label: "Sponsors" },
+  { section: "aboutus", label: "About Us" },
 ];
 
 const NavLink = ({ to, label, onClick, isMobile = false }) => (
@@ -26,6 +29,45 @@ const NavLink = ({ to, label, onClick, isMobile = false }) => (
     {label}
   </Link>
 );
+
+const ScrollLink = ({ section, label, onClick, isMobile = false }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    const scrollToSection = () => {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(scrollToSection, 100);
+    } else {
+      scrollToSection();
+    }
+
+    if (onClick) onClick();
+  };
+
+  return (
+    <a
+      href={`#${section}`}
+      onClick={handleClick}
+      className={
+        isMobile
+          ? "block px-6 py-3 font-bold text-xl text-white hover:scale-110 hover:text-orange-400 transition-all duration-200"
+          : "px-2 lg:px-4 py-2 font-bold text-sm lg:text-base hover:text-orange-400 transition-colors whitespace-nowrap"
+      }
+    >
+      {label}
+    </a>
+  );
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +89,7 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`sticky top-0 text-white px-3 py-2 rounded-full flex items-center justify-between  max-w-5xl shadow-[0_0_10px_2px_rgba(255,140,0,0.8)] ${
+        className={`sticky top-0 text-white px-3 py-2 rounded-full flex items-center justify-between max-w-5xl shadow-[0_0_10px_2px_rgba(255,140,0,0.8)] ${
           isScrolled ? "bg-black/40 backdrop-blur-sm" : "bg-[#2b2b28]"
         }`}
       >
@@ -87,6 +129,9 @@ export default function Navbar() {
               {NAV_LINKS.map((link) => (
                 <NavLink key={link.to} {...link} onClick={closeMenu} isMobile />
               ))}
+              {SCROLL_LINKS.map((link) => (
+                <ScrollLink key={link.section} {...link} onClick={closeMenu} isMobile />
+              ))}
             </div>,
             document.body
           )}
@@ -94,7 +139,7 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex md:items-center md:justify-between">
           <div className="flex items-center gap-1">
-            {NAV_LINKS.slice(0, 3).map((link) => (
+            {NAV_LINKS.map((link) => (
               <NavLink key={link.to} {...link} />
             ))}
           </div>
@@ -104,8 +149,8 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center gap-1 lg:gap-2">
-            {NAV_LINKS.slice(3).map((link) => (
-              <NavLink key={link.to} {...link} />
+            {SCROLL_LINKS.map((link) => (
+              <ScrollLink key={link.section} {...link} />
             ))}
           </div>
         </div>
