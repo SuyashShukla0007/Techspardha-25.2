@@ -1,8 +1,7 @@
-import React from 'react'
+
 import Gallery from '../components/Home/Gallery/Gallery'
 import Carousel from '../components/Home/Guests/Carousel'
 import Event from '../components/Home/Event/Event'
-import Developer from './Developer'
 import CountdownTimer from '../components/Home/Timer/CountdownTimer.jsx'
 import FAQ from '../components/Home/FAQ/FAQ.jsx'
 
