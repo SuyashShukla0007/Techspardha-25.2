@@ -1,51 +1,37 @@
 import React from 'react';
 import { FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
 
-const TeamCard = ({ name, handle, imageUrl, role, socialLinks }) => {
-  const socialIconClass = "flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-gray-700 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-orange-500 hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 active:scale-90";
-
+const TeamCard = ({ name, role, imageUrl, socialLinks }) => {
   return (
-    <div className="group relative w-full max-w-[350px] cursor-pointer overflow-hidden rounded-[20px] bg-[#f5f5f0] shadow-[0_10px_30px_rgba(0,0,0,0.2)] ring-1 ring-white/10 transition-all duration-400 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-[15px] hover:scale-[1.02] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3),_0_0_30px_rgba(255,102,0,0.2),_0_0_60px_rgba(255,136,0,0.1)]">
-      
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-orange-500/5 via-orange-500/10 to-orange-500/5 opacity-0 transition-opacity duration-400 group-hover:opacity-100"></div>
-
-      <div className="relative flex h-[220px] items-center justify-center bg-[#E57A4B]">
-        <div className="absolute top-1/2 left-1/2 h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-[#f5f5f0] z-20">
+    <div className="group relative bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center shadow-lg transform transition-all duration-300 hover:scale-105 hover:border-orange-500 flex-1 min-w-[180px] max-w-[240px]">
+      <div className="absolute top-0 left-0 w-full h-full rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+      <div className="relative z-10">
+        <div className="mx-auto mb-4 w-40 h-40">
           <img
             src={imageUrl}
             alt={name}
-            className="card-image h-full w-full object-cover transition-all duration-300 ease-in-out"
+            className="w-full h-full rounded-full object-cover border-4 border-gray-700 group-hover:border-orange-500 transition-colors duration-300"
+            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/200x200/FF6600/FFFFFF?text=Error'; }}
           />
         </div>
-      </div>
-      
-      <div className="relative bg-[#f5f5f0] px-6 pt-[60px] pb-6 text-center z-30">
-        
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#ff6600] via-[#ffaa00] to-[#00aaff] opacity-30"></div>
+        <h3 className="text-base font-bold text-white mb-1 truncate">{name}</h3>
+        <p className="text-orange-400 text-xs font-semibold">{role}</p>
 
-        <h3 className="font-inter mb-1 text-[1.4rem] font-bold uppercase tracking-wider text-gray-800 transition-colors duration-300 group-hover:text-[#ff6600] group-hover:[text-shadow:0_2px_4px_rgba(255,102,0,0.3)]">
-          {name}
-        </h3>
-        
-        <p className="mb-2 text-sm font-normal text-gray-500">{handle}</p>
-
-        <p className="mb-5 text-md font-bold text-gray-800">{role}</p>
-
-        <div className="mb-5 flex justify-center gap-6">
-          <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className={socialIconClass}  >
-            <FaLinkedin />
+        <div className="mt-4 flex justify-center space-x-3">
+          <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           </a>
-          <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className={socialIconClass} >
-            <FaInstagram />
+          <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
           </a>
-          <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className={socialIconClass}  >
-            <FaGithub />
+          <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
           </a>
         </div>
-
       </div>
     </div>
   );
 };
+
 
 export default TeamCard;
