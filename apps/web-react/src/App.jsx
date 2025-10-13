@@ -11,7 +11,6 @@ import FAQ from './components/Home/FAQ/FAQ'
 const App=()=>{
   return (
     <>
-    <Navbar />
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path='/Events' element={<Events/>}/>
