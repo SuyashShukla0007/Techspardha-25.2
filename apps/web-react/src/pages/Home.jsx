@@ -42,12 +42,12 @@ function Home() {
     <div className='bg-black w-full overflow-x-hidden'>
       <Hero/>
       <CountdownTimer />
-      <Gallery />
-      <Carousel items={cards} /> 
+      <AboutUs /> 
       <Sponsors />
       <Event />
-      <AboutUs /> 
+      <Carousel items={cards} /> 
       <FAQ />
+      <Gallery />
       <Footer />
     </div>
   )

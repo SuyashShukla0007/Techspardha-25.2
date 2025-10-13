@@ -43,7 +43,7 @@ function Event() {
     <div style={customBackgroundStyle} className="font-sans">
       {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-6xl font-gta tracking-widest mb-4 uppercase text-orange-500">
+        <h2 className="text-5xl md:text-7xl font-gta tracking-widest mb-4 uppercase text-orange-500">
           EVENTS
         </h2>
         <p className="text-gray-300 text-lg">

@@ -109,8 +109,8 @@ const CountdownTimer = () => {
                 }
             `}</style>
             
-            <h1 className="text-orange-500 font-extrabold mb-8 sm:mb-10 md:mb-12 lg:mb-14
-                           text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl
+            <h1 className="text-orange-500 font-gta tracking-normal  mb-10 sm:mb-10 md:mb-12 lg:mb-14
+                           text-5xl xs:text-3xl sm:text-4xl md:text-7xl 
                            px-4">
                 TechSpardha Kicks Off In
             </h1>
