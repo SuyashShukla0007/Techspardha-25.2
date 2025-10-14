@@ -1,15 +1,16 @@
-import React from 'react'
+
 import Gallery from '../components/Home/Gallery/Gallery'
 import Carousel from '../components/Home/Guests/Carousel'
 import Event from '../components/Home/Event/Event'
-import Developer from './Developer'
 import CountdownTimer from '../components/Home/Timer/CountdownTimer.jsx'
 import FAQ from '../components/Home/FAQ/FAQ.jsx'
 
 import AboutUs from '../components/Home/AboutUs/AboutUs.jsx' 
 
 import Footer from '../components/Global/Footer/footer.jsx';
+import Sponsors from '../components/Home/Sponsors/Sponsors.jsx'
 
+import Hero from '../components/Home/Hero/Hero.jsx'
 function Home() {
   const cards = [{
     name: 'Salman Khan',
@@ -39,13 +40,14 @@ function Home() {
 
   return (
     <div className='bg-black w-full overflow-x-hidden'>
+      <Hero/>
       <CountdownTimer />
-      <Gallery />
-      <Carousel items={cards} /> 
-      <Event />
-      <Developer />
       <AboutUs /> 
+      <Sponsors />
+      <Event />
+      <Carousel items={cards} /> 
       <FAQ />
+      <Gallery />
       <Footer />
     </div>
   )

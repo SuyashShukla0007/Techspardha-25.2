@@ -26,7 +26,7 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-customBlack p-4 flex justify-center items-center flex-col">
-      <p className="text-5xl text-center text-primary font-gta mb-10">Gallery</p>
+      <p className="text-5xl md:text-7xl text-center text-primary font-gta mb-10">Gallery</p>
 
       <div className="w-[95vw] bg-customBlack rounded-xl">
         <div className="grid gap-3">

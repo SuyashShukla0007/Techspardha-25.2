@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, forwardRef } from "react";
 
 const contentBlocks = [
   {
@@ -99,13 +99,12 @@ const contentBlocks = [
   },
 ];
 
-
 const allContentBlocks = [
   ...contentBlocks,
   ...contentBlocks.map((b) => ({ ...b, key: b.key + "-clone1" })),
 ];
 
-const AboutUs = () => {
+const AboutUs = forwardRef((props, ref) => {
   const carouselContainerRef = useRef(null);
   const contentWrapperRef = useRef(null);
   const [isCarouselHovered, setIsCarouselHovered] = useState(false);
@@ -179,7 +178,12 @@ const AboutUs = () => {
   };
 
   return (
-    <div className="relative overflow-hidden min-h-[70vh] text-white bg-[#05070B] flex items-center justify-center py-4 px-4 sm:px-10">
+    <div
+      ref={ref}
+      id="aboutus"
+      data-section="aboutus"
+      className="relative overflow-hidden min-h-[70vh] text-white bg-[#05070B] flex items-center justify-center py-4 px-4 sm:px-10"
+    >
       {/* Main Tilt Card */}
       <div
         ref={cardRef}
@@ -264,6 +268,8 @@ const AboutUs = () => {
       </div>
     </div>
   );
-};
+});
+
+AboutUs.displayName = 'AboutUs';
 
 export default AboutUs;
