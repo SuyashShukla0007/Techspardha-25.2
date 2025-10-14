@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo, forwardRef } from "react";
-import ProfileCard from "./ProfileCard"; // Make sure this path is correct
+import axios from "axios"; // Make sure axios is installed
+import ProfileCard from "./ProfileCard";
 
 // Debounce function for resizing
 function debounce(func, delay) {
@@ -11,7 +12,34 @@ function debounce(func, delay) {
 }
 
 const Carousel = forwardRef(
-  ({ items, isLoading, autoSlide = true, interval = 4000, cardWidth = 440, ...props }, ref) => {
+  ({ autoSlide = true, interval = 4000, cardWidth = 440, ...props }, ref) => {
+    // State for lectures data
+    const [lectures, setLectures] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Fetch lectures data from API
+    useEffect(() => {
+      const fetchLectures = async () => {
+        try {
+          setLoading(true);
+          const response = await axios.get('https://us-central1-techspardha-87928.cloudfunctions.net/api2/lectures');
+          if (response.data.success) {
+            setLectures(response.data.data.lectures);
+          } else {
+            setError('Failed to fetch lectures data');
+          }
+        } catch (err) {
+          setError('Error fetching lectures: ' + err.message);
+          console.error('Error fetching lectures:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchLectures();
+    }, []);
+
     // State for the post-loading slide-in animation
     const [show, setShow] = useState(false);
 
@@ -22,13 +50,13 @@ const Carousel = forwardRef(
     
     // Create looped items for infinite scroll effect
     const loopedItems = useMemo(() => {
-      if (items && items.length > 0 && items.length > visibleCount) {
-        const startClones = items.slice(items.length - visibleCount);
-        const endClones = items.slice(0, visibleCount);
-        return [...startClones, ...items, ...endClones];
+      if (lectures && lectures.length > 0 && lectures.length > visibleCount) {
+        const startClones = lectures.slice(lectures.length - visibleCount);
+        const endClones = lectures.slice(0, visibleCount);
+        return [...startClones, ...lectures, ...endClones];
       }
-      return items || [];
-    }, [items, visibleCount]);
+      return lectures || [];
+    }, [lectures, visibleCount]);
 
     // State for the current slide index and managing transitions for the loop
     const [current, setCurrent] = useState(visibleCount);
@@ -36,12 +64,12 @@ const Carousel = forwardRef(
 
     // Effect to handle the post-loading animation
     useEffect(() => {
-      if (isLoading) return; // Do nothing if still loading
+      if (loading) return; // Do nothing if still loading
       const timer = setTimeout(() => {
         setShow(true);
       }, 100); // Small delay to trigger the transition
       return () => clearTimeout(timer);
-    }, [isLoading]);
+    }, [loading]);
 
     // Effect to calculate how many cards are visible on resize
     useEffect(() => {
@@ -73,14 +101,14 @@ const Carousel = forwardRef(
 
     // Handler for the "magic jump" after a transition to a cloned slide ends
     const handleTransitionEnd = () => {
-      if (items && items.length > 0) {
-          if (current >= items.length + visibleCount) {
+      if (lectures && lectures.length > 0) {
+          if (current >= lectures.length + visibleCount) {
               setIsTransitioning(false);
               setCurrent(visibleCount);
           }
           if (current <= visibleCount - 1) {
               setIsTransitioning(false);
-              setCurrent(items.length + visibleCount - 1);
+              setCurrent(lectures.length + visibleCount - 1);
           }
       }
     };
@@ -95,10 +123,43 @@ const Carousel = forwardRef(
 
     // Auto-slide functionality
     useEffect(() => {
-      if (!autoSlide || paused || !items || items.length === 0) return;
+      if (!autoSlide || paused || !lectures || lectures.length === 0) return;
       const slideInterval = setInterval(nextSlide, interval);
       return () => clearInterval(slideInterval);
-    }, [paused, autoSlide, interval, nextSlide, items]);
+    }, [paused, autoSlide, interval, nextSlide, lectures]);
+
+    // Handle loading and error states
+    if (loading) {
+      return (
+        <div 
+          ref={ref}
+          id="guests" 
+          data-section="guests"
+          className="flex flex-col items-center justify-center min-h-[400px] p-8"
+        >
+          <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039]">
+            Guest Lectures
+          </div>
+          <div className="text-white text-xl">Loading lectures...</div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div 
+          ref={ref}
+          id="guests" 
+          data-section="guests"
+          className="flex flex-col items-center justify-center min-h-[400px] p-8"
+        >
+          <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039]">
+            Guest Lectures
+          </div>
+          <div className="text-white text-xl">Error: {error}</div>
+        </div>
+      );
+    }
 
     return (
       <div
@@ -106,13 +167,13 @@ const Carousel = forwardRef(
         id="guests"
         data-section="guests"
         className={`
-          transition-all duration-700 ease-out 
+          p-8 transition-all duration-700 ease-out 
           ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}
         `}
         {...props}
       >
         <div className="flex flex-col gap-8 w-full mx-auto">
-          <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039]  text-shadow-xl text-shadow-[#F77039]">
+          <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039] text-shadow-xl text-shadow-[#F77039]">
             Guest Lectures
           </div>
 
@@ -131,17 +192,20 @@ const Carousel = forwardRef(
                 transform: loopedItems.length > 0 ? `translateX(-${(current * 100) / loopedItems.length}%)` : 'translateX(0)',
               }}
             >
-              {loopedItems.map((item, idx) => (
+              {loopedItems.map((lecture, idx) => (
                 <div
                   key={idx}
                   className="box-border p-5"
                   style={{ flex: loopedItems.length > 0 ? `0 0 ${100 / loopedItems.length}%` : '0 0 100%' }}
                 >
-                  <div className="h-full transform transition-transform duration-500 w-full flex justify-around  hover:scale-105 hover:-translate-y-2">
+                  <div className="h-full transform transition-transform duration-500 w-full flex justify-around hover:scale-105 hover:-translate-y-2">
                     <ProfileCard
-                      name={item.name}
-                      description={item.description}
-                      imageUrl={item.imageUrl}
+                      name={lecture.name}
+                      description={lecture.desc}
+                      imageUrl={lecture.imageUrl}
+                      linkedInlink={lecture.linkedin}
+                      xlink={lecture.facebook}
+                      instagramlink={lecture.insta}
                     />
                   </div>
                 </div>
