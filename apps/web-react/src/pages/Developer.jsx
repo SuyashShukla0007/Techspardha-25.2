@@ -1,10 +1,15 @@
 import React from "react";
 import ProfileCard from "../components/Developers/DeveloperCard";
+import Navbar from "../components/Home/navbar/navbar.jsx";
+import Footer from "../components/Global/Footer/footer.jsx";
 
 export default function Developer() {
   return (
-    <div className="min-h-screen px-6 py-10 bg-gray-800">
+    <>
+    <Navbar />
+    <div className="min-h-screen px-6 py-10">
       {/* Header Section */}
+      
       <div className="text-center mb-12">
         <h1 className="text-5xl font-extrabold text-gray-800">
 <span className="text-orange-500 font-rationale font-extrabold text-6xl tracking-wide">
@@ -37,5 +42,8 @@ export default function Developer() {
         ))}
       </div>
     </div>
+    <Footer />
+    </>
+    
   );
 }

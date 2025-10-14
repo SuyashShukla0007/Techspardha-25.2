@@ -1,6 +1,5 @@
-
-
 import React, { useRef, useState, useEffect } from 'react'
+import Navbar from '../navbar/navbar' // Import the Navbar component
 
 function Hero() {
   const videoRef = useRef(null)
@@ -34,6 +33,11 @@ function Hero() {
       className="relative flex h-screen w-full items-center justify-center overflow-hidden text-white"
       aria-label="Hero section with background video"
     >
+      {/* Navbar - Added here with absolute positioning and high z-index */}
+      <div className="absolute top-0 left-0 w-full z-[1000]">
+        <Navbar />
+      </div>
+      
       {/* Background Video */}
       <video
         ref={videoRef}

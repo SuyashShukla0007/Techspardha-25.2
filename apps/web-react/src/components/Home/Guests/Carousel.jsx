@@ -112,7 +112,7 @@ const Carousel = forwardRef(
         {...props}
       >
         <div className="flex flex-col gap-8 w-full mx-auto">
-          <div className="text-4xl md:text-5xl font-bold w-full text-center mb-4 text-[#F77039] underline text-shadow-xl text-shadow-[#F77039]">
+          <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039]  text-shadow-xl text-shadow-[#F77039]">
             Guest Lectures
           </div>
 
