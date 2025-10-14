@@ -17,12 +17,15 @@ const TeamPage = () => {
         setLoading(true);
         const res = await axios.get('https://us-central1-techspardha-87928.cloudfunctions.net/api2/contacts');
         if (res.data.success && res.data.data && res.data.data.contacts) {
-          setTeams(res.data.data.contacts);
+          // Create a copy of the array and reverse it
+          const reversedTeams = [...res.data.data.contacts].reverse();
+          setTeams(reversedTeams);
         } else {
           setError('Failed to fetch teams');
         }
       } catch (err) {
         setError('Error fetching teams');
+        console.error(err);
       } finally {
         setLoading(false);
       }
