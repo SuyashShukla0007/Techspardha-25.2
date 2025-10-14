@@ -37,7 +37,7 @@ const AnimatedTimeValue = ({ timeValue, isDay }) => {
 
     return (
         <motion.span 
-            className="bg-gradient-to-br from-orange-500 to-orange-600 text-black font-extrabold rounded-xl shadow-lg 
+            className="bg-transparent to-orange-600 text-[#F77039] font-extrabold rounded-xl shadow-lg  border border-[#F77039]
                        flex justify-center items-center transition-all duration-300
                        text-2xl w-[70px] h-[55px]
                        xs:text-3xl xs:w-[75px] xs:h-[60px]
@@ -49,6 +49,7 @@ const AnimatedTimeValue = ({ timeValue, isDay }) => {
                        hover:-translate-y-1" 
             whileHover={{ scale: 1.05 }}
         >
+            
             {rounded}
         </motion.span>
     );
@@ -109,8 +110,8 @@ const CountdownTimer = () => {
                 }
             `}</style>
             
-            <h1 className="text-orange-500 font-extrabold mb-8 sm:mb-10 md:mb-12 lg:mb-14
-                           text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl
+            <h1 className="text-orange-500 font-gta tracking-normal  mb-10 sm:mb-10 md:mb-12 lg:mb-14
+                           text-5xl xs:text-3xl sm:text-4xl md:text-7xl 
                            px-4">
                 TechSpardha Kicks Off In
             </h1>
