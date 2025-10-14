@@ -118,7 +118,7 @@ const FAQ = () => {
     >
       <div className="text-center">
         <h1
-          className="text-[3.5rem] font-bold text-[#FF5C00] tracking-widest inline-block pb-2.5 border-b-4 border-b-[#FF5C00] border-solid"
+          className="text-5xl md:text-7xl font-bold text-[#FF5C00] tracking-widest inline-block pb-2.5 border-b-4 border-b-[#FF5C00] border-solid"
           style={{ fontFamily: "Orbitron" }}
         >
           FAQ

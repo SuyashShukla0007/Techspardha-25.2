@@ -84,7 +84,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`absolute md:top-3 left-0 w-full py-5 bg-transparent z-[999] transition-all duration-300 flex items-center justify-center ${
+      className={` md:top-3 left-0 w-full py-5 bg-transparent z-[999] transition-all duration-300 flex items-center justify-center ${
         isScrolled ? "translate-y-2" : "translate-y-0"
       }`}
     >

@@ -11,7 +11,7 @@ function EventContainer() {
     setSelectedCategory(cat);
   }
   return (
-  <div className='bg-[#15130F] text-white w-full min-h-[100dvh] m-0 p-0 box-border'>
+  <div className=' text-white w-full min-h-[100dvh] m-0 p-0 box-border'>
       <h1 className='text-5xl font-extrabold text-center text-[#f77039] font-gta  pt-10 pd-8'>EVENTS</h1>
       <p className='text-center p-4'>Explore our exciting lineup of events at TECHSPARDHA'25</p>
         <hr className='w-[15%] mx-auto border-t-4 border-[#f77039]' />
