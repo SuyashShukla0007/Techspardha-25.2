@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo, forwardRef } from "react";
-import axios from "axios"; // Make sure axios is installed
+import axios from "axios"; 
 import ProfileCard from "./ProfileCard";
 
 // Debounce function for resizing
@@ -128,14 +128,13 @@ const Carousel = forwardRef(
       return () => clearInterval(slideInterval);
     }, [paused, autoSlide, interval, nextSlide, lectures]);
 
-    // Handle loading and error states
     if (loading) {
       return (
         <div 
           ref={ref}
           id="guests" 
           data-section="guests"
-          className="flex flex-col items-center justify-center min-h-[400px] p-8"
+          className="flex flex-col items-center justify-center min-h-[400px]"
         >
           <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039]">
             Guest Lectures
@@ -151,7 +150,7 @@ const Carousel = forwardRef(
           ref={ref}
           id="guests" 
           data-section="guests"
-          className="flex flex-col items-center justify-center min-h-[400px] p-8"
+          className="flex flex-col items-center justify-center min-h-[400px]"
         >
           <div className="text-5xl md:text-7xl font-gta tracking-wider w-full text-center mb-4 text-[#F77039]">
             Guest Lectures
@@ -167,7 +166,7 @@ const Carousel = forwardRef(
         id="guests"
         data-section="guests"
         className={`
-          p-8 transition-all duration-700 ease-out 
+          transition-all duration-700 ease-out 
           ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}
         `}
         {...props}
