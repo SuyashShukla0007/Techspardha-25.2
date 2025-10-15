@@ -1,0 +1,40 @@
+.neon-text {
+  color: white; /* Text color */
+  -webkit-text-stroke: 1px #f77039; /* Neon orange stroke */
+  text-shadow: 
+    0 0 5px #f77039, /* Inner glow */
+    0 0 10px #f77039, /* Outer glow */
+    0 0 20px #f77039, /* Stronger outer glow */
+    0 0 40px #ff5c00; /* Extended glow */
+  font-weight: bold; /* Optional: Make the text bold */
+}
+.neon-orange-text {
+      -webkit-text-stroke: 2px white;
+  color: #f77039; /* Set text color to orange */
+  font-weight: bold; /* Make the text bold */
+  text-shadow: 
+    0 0 5px #ffffff, 
+    0 0 10px #ffffff,
+    0 0 20px #ffffff, 
+    /* 0 0 40px #ffffff; Extended white glow */
+}
+
+
+/* .slush-box {
+  background: rgba(255, 255, 255, 0.85);
+ 
+  border-radius: 8px;
+  display: inline-block;
+  backdrop-filter: blur(5px);
+}
+.slush-text {
+  
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 8vw, 8rem);
+  background: url('/videos/hero_video.gif') center/cover no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  mix-blend-mode: lighten;
+} */

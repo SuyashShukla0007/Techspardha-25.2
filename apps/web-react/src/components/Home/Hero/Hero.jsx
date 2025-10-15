@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import Navbar from '../navbar/navbar' // Import the Navbar component
-
+import './hero.css'
 function Hero() {
   const videoRef = useRef(null)
   const [videoError, setVideoError] = useState(false)
@@ -38,31 +38,25 @@ function Hero() {
         <Navbar />
       </div>
       
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover opacity-55 transition-all duration-300 ease-in-out"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src="/videos/hero_video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Fallback Image if Video Fails */}
-      {videoError && (
+      
+          {/* Background GIF */}
+      {!videoError ? ( // Use videoError instead of gifError
+        <img
+          src="/videos/hero_video.gif" // Replace with the correct path to your GIF
+          alt="Hero background"
+          className="absolute inset-0 h-full w-full object-cover opacity-75 transition-all duration-300 ease-in-out"
+          onError={() => setVideoError(true)} // Handle GIF loading errors
+          aria-hidden="true"
+        />
+      ) : (
         <div
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-poster.jpg')" }}
+          style={{ backgroundImage: "url('/images/hero-poster.jpg')" }} // Fallback image
           role="img"
           aria-label="Hero fallback background"
         >
           <div className="rounded-md bg-black/45 px-4 py-2 text-white">
-            Video unavailable
+            GIF unavailable
           </div>
         </div>
       )}
@@ -72,9 +66,15 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex max-w-[1100px] flex-col items-center justify-center gap-4 px-4 text-center md:pt-20">
-        <img src="/photos/image1.png" alt="img1" className="block h-auto w-auto" />
-        <img src="/photos/image4.png" alt="img4" className="block h-auto w-auto" />
-      </div>
+        {/* <div className="slush-box"> */}
+          <p className="neon-orange-text text-5xl md:text-8xl text-center text-primary font-gta mb-10 ">
+            Techspardha
+          </p>
+        {/* </div> */}
+        <p className="neon-text text-5xl md:text-7xl text-center font-gta mb-10">
+          Transcending Paradigms
+          </p>      
+        </div>
     </section>
   )
 }
