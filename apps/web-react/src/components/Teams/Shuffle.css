@@ -4,15 +4,19 @@
     display: inline-block;
     white-space: normal;
     word-wrap: break-word;
-    color:#ff6600;
+    /* inherit color from outer heading so theme controls color */
+    color: inherit;
     will-change: transform;
     line-height: 1; 
-    font-size: 4rem;
+    /* inherit font-size so responsive headings control sizing */
+    font-size: inherit;
     text-transform: uppercase;
-    visibility: hidden;
+    /* make visible by default (animation may toggle the ready state) */
+    visibility: visible;
   }
   
   .shuffle-parent.is-ready {
+    /* kept for compatibility with the GSAP-ready class, allow future transitions */
     visibility: visible;
   }
   
