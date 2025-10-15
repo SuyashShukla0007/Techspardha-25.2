@@ -64,7 +64,22 @@ const Sponsors = forwardRef(({ ...props }, ref) => {
   const totalGroups =
     sponsorImages.length > 0 ? Math.ceil(sponsorImages.length / perGroup) : 0;
   for (let g = 0; g < totalGroups; g++) {
-    groups.push(sponsorImages.slice(g * perGroup, g * perGroup + perGroup));
+    const start = g * perGroup;
+    const slice = sponsorImages.slice(start, start + perGroup);
+    // If last slice is shorter than perGroup, fill by wrapping around the sponsorImages
+    if (slice.length < perGroup && sponsorImages.length > 0) {
+      const filled = [...slice];
+      let idx = 0;
+      while (filled.length < perGroup) {
+        // take from beginning, but avoid duplicating the exact same items in this slice if possible
+        const candidate = sponsorImages[idx % sponsorImages.length];
+        filled.push(candidate);
+        idx++;
+      }
+      groups.push(filled);
+    } else {
+      groups.push(slice);
+    }
   }
 
   useEffect(() => {
