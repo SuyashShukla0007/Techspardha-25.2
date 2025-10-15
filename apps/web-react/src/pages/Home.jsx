@@ -21,8 +21,8 @@ function Home() {
       <Sponsors />
       <Event />
       <Carousel /> 
-      <FAQ />
       <Gallery />
+      <FAQ />
       <Footer />
     </div>
   )

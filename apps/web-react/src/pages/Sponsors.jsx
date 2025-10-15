@@ -33,6 +33,17 @@ function Sponsors() {
   const [groupIndex, setGroupIndex] = useState(0);
 
   useEffect(() => {
+   
+
+     const fetchFaqs = async () => {
+     
+       
+        const response = await axios.get('https://us-central1-techspardha-87928.cloudfunctions.net/api2/sponsors');
+        console.log(response)
+     }
+
+    fetchFaqs();
+
     const id = setInterval(() => {
       setGroupIndex((i) => (i + 1) % groups.length);
     }, cycleMs);
