@@ -1,0 +1,23 @@
+/* Container for the marquee */
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 100px; 
+  display: flex;
+  align-items: center;
+  background: black; /* Background color for the marquee */
+}
+.marquee-content {
+  background-color: black;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+
+/* Marquee content styling */
+.marquee-content {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
