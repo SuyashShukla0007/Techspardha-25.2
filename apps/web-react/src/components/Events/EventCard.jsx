@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 const Button = ({ text, redirect }) => {
   return (
@@ -36,14 +36,15 @@ function EventCard({
   registerlink,
   detailedlink,
 }) {
+    const [expanded, setExpanded] = useState(false);
   const tagStyle =
     "bg-[#252525] text-gray-200 border border-gray-600/50 shadow-lg shadow-black/50";
 
   return (
-    <div className="bg-[#181818] rounded-lg overflow-hidden transform transition duration-300 hover:scale-[1.03] border-t-2 border-transparent hover:border-orange-500 w-full sm:max-w-sm mx-auto group">
+ <div className="bg-[#181818] rounded-lg transform transition duration-300 hover:scale-[1.03] border-t-2 border-transparent hover:border-orange-500  w-[14rem] sm:w-full  sm:max-w-sm mx-auto group  lg:h-[37rem] lg:min-w-[200px] ">
       {/* Image */}
       <div className="relative h-40 sm:h-48 md:h-56">
-        <img className="w-full h-full object-cover" src={image} alt={name} />
+        <img className="w-full h-full object-contain bg-black" src={image} alt={name} />
         {category && (
           <span
             className={`absolute top-2 right-2 text-[0.65rem] sm:text-xs font-light px-2 sm:px-3 py-1 rounded-full cursor-pointer hover:opacity-80 transition-colors uppercase ${tagStyle}`}
@@ -61,12 +62,25 @@ function EventCard({
         </h3>
 
         {/* Description */}
-        <p className="text-gray-400 text-sm sm:text-base mb-5 leading-relaxed">
+        <div
+          className={`text-gray-400 text-sm sm:text-base mb-3 leading-relaxed transition-all duration-300 ${
+            expanded
+              ? "max-h-32 overflow-y-auto pr-1"
+              : "line-clamp-5 overflow-hidden"
+          }`}
+        >
           {description}
-        </p>
+        </div>
+
+          <button
+          onClick={() => setExpanded(!expanded)}
+          className="text-orange-500 text-sm font-medium hover:underline self-start mb-4"
+        >
+          {expanded ? "Read less" : "Read more"}
+        </button>
 
         {/* Venue & Date */}
-        <div className="space-y-2 text-xs sm:text-sm text-gray-300 mb-6">
+        <div className="space-y-2 text-xs sm:text-sm text-gray-300 mb-6 line-clamp-5">
           {venue && (
             <div className="flex items-center">
               <svg
@@ -114,8 +128,8 @@ function EventCard({
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button text="Register" redirect={registerlink} />
+        <div className="flex flex-col sm:flex-row gap-3 justify-center" >
+          {/* <Button text="Register" redirect={registerlink} /> */}
           <Button text="See Details" redirect={detailedlink} />
         </div>
       </div>
