@@ -1,11 +1,72 @@
 import React from 'react'
 import EventCard from '../../components/Events/EventCard';
-import {EVENTCATEGORIES,EVENTS} from '../../constants/Event';
-import {useState} from 'react';
+import { FetchFormattedEvent } from './FetchFormattedEvent';
+import {useState,useEffect} from 'react';
+import axios from "axios"
 function EventContainer() {
-  const [category,setCategory] = useState([{ id: 0, name: "All" },...EVENTCATEGORIES]);
+  const [category, setCategory] = useState([{ id: 0, name: "All" }]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [events, setEvents] = useState([]); 
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get("https://us-central1-techspardha-87928.cloudfunctions.net/api2/events/categories");
+        const data = res.data;
+
+        if (data.success && data.data?.categories) {
+          const formatted = data.data.categories.map((cat, index) => ({
+            id: index + 1,
+            name: cat.categoryName
+          }));
+          setCategory([{ id: 0, name: "All" }, ...formatted]);
+        } else {
+          console.error("Invalid API response:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    const fetchAllEvents = async () => {
+    try {
+      const res = await axios.get(
+        "https://us-central1-techspardha-87928.cloudfunctions.net/api2/events"
+      );
+      const allEvents = res.data?.data?.events;
+
+      if (!allEvents || !Array.isArray(allEvents)) {
+        console.error("Invalid events API response:", res.data);
+        return;
+      }
+
+      // For each event, fetch its detailed description & format it
+      const detailedEvents = await Promise.all(
+        allEvents.map(async (ev, index) => {
+          try {
+            const formatted = await FetchFormattedEvent(
+              ev.eventCategory,
+              ev.eventName,
+              index + 1
+            );
+            return formatted;
+          } catch (err) {
+            console.error(`Failed to format ${ev.eventName}`, err);
+            return null;
+          }
+        })
+      );
+
+      setEvents(detailedEvents.filter(Boolean));
+    } catch (error) {
+      console.error("Error fetching events:", error);
+    }
+  };
+    fetchCategories();
+    fetchAllEvents();
+
+  }, []);
+
   function onclickHandler(e){
     const cat=e.target.innerText;
     setSelectedCategory(cat);
@@ -95,22 +156,26 @@ function EventContainer() {
 </div>
 
         <div className="inline-flex flex-wrap justify-center mt-10 mb-10 align-middle gap-8 px-4 w-full">
-          {EVENTS.filter((event)=>{
-            if(selectedCategory==='All'){
-              return true;
-            }
-            return event.category === selectedCategory;
-          }).map((event) => (
-            <div className="width-[33%] box-border m-4">
-            <EventCard key={event.id} name={event.name}
-  description={event.description}
-  venue={event.venue}
-  date={event.date}
-  category={event.category}
-  image={event.image}
-  registerlink={event.registerlink}
-  detailedlink={event.detailedlink}/></div>
-          ))}
+          {events
+  .filter((event) => {
+    if (selectedCategory === 'All') return true;
+    return event.category === selectedCategory;
+  })
+  .map((event) => (
+    <div className="width-[33%] box-border m-4" key={event.id}>
+      <EventCard
+        name={event.name}
+        description={event.description}
+        venue={event.venue}
+        date={event.date}
+        category={event.category}
+        image={event.image}
+        registerlink={event.registerlink}
+        detailedlink={event.detailedlink}
+      />
+    </div>
+  ))}
+
 
         </div>
     </div>
