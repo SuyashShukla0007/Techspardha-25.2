@@ -9,19 +9,20 @@ import AboutUs from '../components/Home/AboutUs/AboutUs.jsx'
 
 import Footer from '../components/Global/Footer/footer.jsx';
 import Sponsors from '../components/Home/Sponsors/Sponsors.jsx'
-
+import SocietyMarquee from '../components/Home/SocietyMarquee/SocietyMarquee.jsx'
 import Hero from '../components/Home/Hero/Hero.jsx'
 function Home() {
   return (
     <div className='bg-black w-full overflow-x-hidden'>
       <Hero/>
       <CountdownTimer />
+      <SocietyMarquee />
       <AboutUs /> 
       <Sponsors />
       <Event />
       <Carousel /> 
-      <FAQ />
       <Gallery />
+      <FAQ />
       <Footer />
     </div>
   )

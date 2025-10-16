@@ -5,7 +5,7 @@ import './SocietyMarquee.css'; // Import the CSS file for the blur effect
 
 const SocietyMarquee = () => {
   return (
-    <div className="pt-10">
+    <div className="pt-10 pb-20">
   <p className="text-5xl text-center text-primary font-gta mb-10">Team Techspardha</p>
 
     <div className="marquee-container">
