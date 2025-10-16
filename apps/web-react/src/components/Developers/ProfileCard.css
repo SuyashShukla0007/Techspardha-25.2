@@ -67,8 +67,10 @@
 }
 
 .pc-card {
-  height: 80svh;
-  max-height: 540px;
+  width: 100%;
+  height: auto;
+  max-width: 22rem; /* roughly Tailwind's max-w-sm */
+  min-width: 18rem;
   display: grid;
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
@@ -79,7 +81,7 @@
     calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
   transition: transform 1s ease;
   transform: translate3d(0, 0, 0.1px) rotateX(0deg) rotateY(0deg);
-  background-size: 100% 100%;
+  box-sizing: border-box;
   background-position:
     0 0,
     0 0,
@@ -262,7 +264,7 @@
 }
 
 .pc-avatar-content .avatar {
-  width: 60%;
+  width: 70%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%) scale(1);
@@ -307,7 +309,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
+  overflow: hidden;
 }
+
 
 .pc-mini-avatar {
   width: 48px;

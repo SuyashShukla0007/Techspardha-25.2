@@ -298,7 +298,8 @@ const ProfileCardComponent = ({
                 </div>
 
                 {/* --- Social Media Links (Correctly placed JSX) --- */}
-                <div className="flex items-center justify-center gap-4 mt-4 ">
+                <div className="flex items-center justify-center gap-4 mt-4 w-full">
+
                   {/* Instagram */}
                   <button
                     onClick={() => window.open(`https://instagram.com/${handle}`, "_blank")}

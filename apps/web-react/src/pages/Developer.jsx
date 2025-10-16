@@ -19,7 +19,7 @@ export default function Developer() {
         <div className="mt-4 mx-auto w-40 h-1.5 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-600 rounded-full"></div>
       </div>
       {/* Responsive Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center max-w-7xl mx-auto">
         {Array.from({ length: 6 }).map((_, index) => (
           <ProfileCard
             key={index}
