@@ -46,9 +46,9 @@ function Home() {
       <AboutUs />
       <Sponsors />
       <Event />
-      <Carousel />
-      <FAQ />
+      <Carousel /> 
       <Gallery />
+      <FAQ />
       <Footer />
     </div>
   )

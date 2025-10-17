@@ -39,7 +39,7 @@ const TeamPage = () => {
       <div className="min-h-screen w-full text-white font-sans flex justify-center items-start py-10 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-7xl">
           <div className="mb-20 mx-auto relative">
-            <h1 className="text-orange-500 mx-auto font-rationale font-extrabold text-4xl sm:text-5xl lg:text-6xl font-black text-[#ff6600] uppercase tracking-[4px] mb-5 [text-shadow:0_0_20px_rgba(255,102,0,0.5)]">
+            <h1 className="mx-auto font-rationale font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#ff6600] uppercase tracking-[4px] mb-5 [text-shadow:0_0_20px_rgba(255,102,0,0.5)]">
               <div className="mx-auto w-max">
                 <Shuffle
                   text="TECHSPARDHA TEAMS"

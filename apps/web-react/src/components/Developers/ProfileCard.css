@@ -30,6 +30,8 @@
   --sunpillar-clr-5: var(--sunpillar-5);
   --sunpillar-clr-6: var(--sunpillar-6);
   --card-radius: 30px;
+  /* Main avatar size (applies to the large avatar inside the card) */
+  --main-avatar-size: 240px;
 }
 
 .pc-card-wrapper {
@@ -259,15 +261,21 @@
 .pc-avatar-content {
   mix-blend-mode: screen;
   overflow: hidden;
+  position: relative; /* allow absolutely positioned avatar to be contained */
+  padding: 12px; /* small padding around the image */
+  box-sizing: border-box;
 }
 
 .pc-avatar-content .avatar {
-  width: 60%;
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%) scale(1);
-  bottom: 70px;
+  /* make the image fill the avatar-content with padding preserved */
+  inset: 12px; /* respects .pc-avatar-content padding */
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  object-fit: cover; /* ensures the image covers the box while preserving aspect */
+  border-radius: 12px;
   opacity: calc(1.75 - var(--pointer-from-center));
+  z-index: 2; /* keep image below the text */
 }
 
 .pc-avatar-content::before {
@@ -291,7 +299,7 @@
   bottom: 20px;
   left: 20px;
   right: 20px;
-  z-index: 2;
+  z-index: 8; /* ensure the user info and icons sit above the avatar */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -383,6 +391,7 @@
   top: 3em;
   display: flex;
   flex-direction: column;
+  z-index: 9; /* ensure name/title sit above everything */
 }
 
 .pc-details h3 {
@@ -390,11 +399,13 @@
   margin: 0;
   font-size: min(5svh, 3em);
   margin: 0;
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  /* make name text pure white and sit above images */
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  z-index: 11;
 }
 
 .pc-details p {
@@ -405,11 +416,13 @@
   font-size: 16px;
   margin: 0 auto;
   width: min-content;
-  background-image: linear-gradient(to bottom, #fff, #4a4ac0);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  /* make title text pure white and on top of images */
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  z-index: 10;
 }
 
 @keyframes glow-bg {
@@ -442,6 +455,9 @@
   .pc-card {
     height: 70svh;
     max-height: 450px;
+  }
+  :root {
+    --main-avatar-size: 200px;
   }
 
   .pc-details {
@@ -490,6 +506,9 @@
   .pc-card {
     height: 60svh;
     max-height: 380px;
+  }
+  :root {
+    --main-avatar-size: 180px;
   }
 
   .pc-details {
@@ -541,6 +560,9 @@
   .pc-card {
     height: 55svh;
     max-height: 320px;
+  }
+  :root {
+    --main-avatar-size: 160px;
   }
 
   .pc-details h3 {
