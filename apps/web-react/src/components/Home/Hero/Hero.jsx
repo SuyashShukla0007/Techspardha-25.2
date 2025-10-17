@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motio
 import { ReactLenis } from "lenis/dist/lenis-react";
 import Navbar from "../navbar/navbar";
 import "./hero.css";
-
+import PixelBlast from '../../PixelBlast.jsx';
 const SECTION_HEIGHT = 700;
 
 const Button = ({ text, redirect }) => {
@@ -60,26 +60,115 @@ const Hero = () => {
       {/* === HERO SECTION === */}
      <section className="relative w-full min-h-screen bg-zinc-950 overflow-hidden">
   {/* Navbar */}
+
   <div className="fixed top-0 left-0 w-full z-[1000]">
     <Navbar />
   </div>
 
+{/* 
+  <div >
+  <PixelBlast
+    variant="circle"
+    pixelSize={6}
+    color="#ff7700"
+    patternScale={3}
+    patternDensity={1.2}
+    pixelSizeJitter={0.5}
+    enableRipples
+    rippleSpeed={0.4}
+    rippleThickness={0.12}
+    rippleIntensityScale={1.5}
+    liquid
+    liquidStrength={0.12}
+    liquidRadius={1.2}
+    liquidWobbleSpeed={5}
+    speed={0.6}
+    edgeFade={0.25}
+    transparent
+  />
+</div> */}
   {/* Sticky text limited to hero section */}
-  
+    <div className="absolute inset-0 z-20 h-screen top-0 -mt-80">
+    <PixelBlast
+      variant="circle"
+      pixelSize={6}
+      color="#e6c6a8"
+      patternScale={3}
+      patternDensity={1.2}
+      pixelSizeJitter={0.5}
+      enableRipples
+      rippleSpeed={0.4}
+      rippleThickness={0.12}
+      rippleIntensityScale={1.5}
+      liquid
+      liquidStrength={0.12}
+      liquidRadius={1.2}
+      liquidWobbleSpeed={5}
+      speed={0.6}
+      edgeFade={0.25}
+      transparent
+    />
+  </div>
+  <div className="absolute inset-0 z-10 h-screen top-0 -mt-8">
+    <PixelBlast
+      variant="circle"
+      pixelSize={6}
+      color="#e6c6a8"
+      patternScale={3}
+      patternDensity={1.2}
+      pixelSizeJitter={0.5}
+      enableRipples
+      rippleSpeed={0.4}
+      rippleThickness={0.12}
+      rippleIntensityScale={1.5}
+      liquid
+      liquidStrength={0.12}
+      liquidRadius={1.2}
+      liquidWobbleSpeed={5}
+      speed={0.6}
+      edgeFade={0.25}
+      transparent
+    />
+  </div>
+  <div className="absolute inset-0 z-10 h-screen top-0 mt-48">
+    <PixelBlast
+      variant="circle"
+      pixelSize={6}
+      color="#e6c6a8"
+      patternScale={3}
+      patternDensity={1.2}
+      pixelSizeJitter={0.5}
+      enableRipples
+      rippleSpeed={0.4}
+      rippleThickness={0.12}
+      rippleIntensityScale={1.5}
+      liquid
+      liquidStrength={0.12}
+      liquidRadius={1.2}
+      liquidWobbleSpeed={5}
+      speed={0.6}
+      edgeFade={0.25}
+      transparent
+    />
+  </div>
 
   {/* Scrolling video */}
   <ReactLenis root options={{ lerp: 0.02 }}>
-    <div className="relative min-h-screen sm:h-[100vh] flex flex-col items-center justify-center">
+    
+    <div className="z-30 relative min-h-screen sm:h-[100vh] flex flex-col items-center justify-center">
+      
   <motion.div
     className="fixed top-0 left-0 w-full flex flex-col items-center justify-center h-screen text-center text-white px-4 sm:px-8"
     style={{ opacity }}
   >
+    
     <h1 className="text-5xl sm:text-6xl md:text-8xl font-gta text-primary mb-3 sm:mb-5 md:mb-6 drop-shadow-lg leading-[1.1]">
       Techspardha
     </h1>
     <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-gta text-white drop-shadow-lg leading-[1.2]">
       Transcending Paradigms
     </p>
+    
   </motion.div>
 </div>
 
