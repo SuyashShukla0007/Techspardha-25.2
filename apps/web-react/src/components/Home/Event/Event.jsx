@@ -141,7 +141,7 @@ function Event() {
   }, []);
 
   return (
-    <div className="min-h-screen py-10 bg-gradient-to-br from-[#1a100b] via-[#0d0705] to-[#1f120b] font-sans relative overflow-hidden">
+    <div className="min-h-screen py-10 font-sans relative overflow-hidden">
       {/* Header */}
       <div className="text-center mb-16">
         <h2 className="text-5xl md:text-7xl font-gta tracking-widest mb-4 uppercase text-orange-500">
