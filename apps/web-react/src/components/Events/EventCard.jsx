@@ -62,12 +62,17 @@ function EventCard({
         </h3>
 
         {/* Description */}
-        <div
-  className={`text-gray-400 text-sm sm:text-base mb-3 leading-relaxed transition-all duration-300 ${
-    expanded
+<div
+  className={`text-gray-400 text-sm sm:text-base mb-3 leading-relaxed transition-all duration-300 
+    ${expanded
       ? "max-h-32 overflow-y-auto overflow-x-hidden pr-1"
       : "line-clamp-5 overflow-hidden"
-  }`}
+    } 
+    [&::-webkit-scrollbar]:w-2 
+    [&::-webkit-scrollbar-track]:bg-transparent 
+    [&::-webkit-scrollbar-thumb]:bg-orange-500 
+    [&::-webkit-scrollbar-thumb]:rounded-full
+  `}
 >
   {description}
 </div>
@@ -80,6 +85,7 @@ function EventCard({
     {expanded ? "Read less" : "Read more"}
   </button>
 </div>
+
 
         {/* Description */}
 {/* <div
