@@ -36,12 +36,12 @@ function EventCard({
   registerlink,
   detailedlink,
 }) {
-    const [expanded, setExpanded] = useState(false);
+    // const [expanded, setExpanded] = useState(false);
   const tagStyle =
     "bg-[#252525] text-gray-200 border border-gray-600/50 shadow-lg shadow-black/50";
 
   return (
- <div className="bg-[#181818] rounded-lg transform transition duration-300 hover:scale-[1.03] border-t-2 border-transparent hover:border-orange-500  w-[14rem] sm:w-full  sm:max-w-sm mx-auto group  lg:h-[37rem] lg:min-w-[200px] ">
+<div className="bg-[#181818] rounded-lg transform transition duration-300 hover:scale-[1.03] border-t-2 border-transparent hover:border-orange-500 w-[14rem] sm:w-full sm:max-w-sm mx-auto group lg:min-w-[200px]">
       {/* Image */}
       <div className="relative h-40 sm:h-48 md:h-56">
         <img className="w-full h-full object-contain bg-black" src={image} alt={name} />
@@ -62,7 +62,7 @@ function EventCard({
         </h3>
 
         {/* Description */}
-        <div
+        {/* <div
           className={`text-gray-400 text-sm sm:text-base mb-3 leading-relaxed transition-all duration-300 ${
             expanded
               ? "max-h-32 overflow-y-auto pr-1"
@@ -77,7 +77,28 @@ function EventCard({
           className="text-orange-500 text-sm font-medium hover:underline self-start mb-4"
         >
           {expanded ? "Read less" : "Read more"}
-        </button>
+        </button> */}
+
+
+        {/* Description */}
+<div
+  className=" relative overflow-clip
+    transition-all duration-500 ease-in-out
+     group-hover:max-h-[600px]
+  "
+>
+  <p
+    className="
+      text-gray-400 text-sm sm:text-base mb-3 leading-relaxed
+      line-clamp-5 group-hover:line-clamp-none
+      transition-all duration-500 ease-in-out
+    "
+  >
+    {description}
+  </p>
+</div>
+
+
 
         {/* Venue & Date */}
         <div className="space-y-2 text-xs sm:text-sm text-gray-300 mb-6 line-clamp-5">
