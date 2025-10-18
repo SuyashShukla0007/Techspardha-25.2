@@ -10,32 +10,34 @@
 }
 
 .stars {
-  width: 1px;
-  height: 1px;
+  width: 1.5px;
+  height: 1.5px;
   position: absolute;
-  background: white;
-  box-shadow: 2vw 5vh 2px white, 10vw 8vh 2px white, 15vw 15vh 1px white,
-    22vw 22vh 1px white, 28vw 12vh 2px white, 32vw 32vh 1px white,
-    38vw 18vh 2px white, 42vw 35vh 1px white, 48vw 25vh 2px white,
-    53vw 42vh 1px white, 58vw 15vh 2px white, 63vw 38vh 1px white,
-    68vw 28vh 2px white, 73vw 45vh 1px white, 78vw 32vh 2px white,
-    83vw 48vh 1px white, 88vw 20vh 2px white, 93vw 52vh 1px white,
-    98vw 35vh 2px white, 5vw 60vh 1px white, 12vw 65vh 2px white,
-    18vw 72vh 1px white, 25vw 78vh 2px white, 30vw 85vh 1px white,
-    35vw 68vh 2px white, 40vw 82vh 1px white, 45vw 92vh 2px white,
-    50vw 75vh 1px white, 55vw 88vh 2px white, 60vw 95vh 1px white,
-    65vw 72vh 2px white, 70vw 85vh 1px white, 75vw 78vh 2px white,
-    80vw 92vh 1px white, 85vw 82vh 2px white, 90vw 88vh 1px white,
-    95vw 75vh 2px white;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 2vw 5vh 2.5px rgba(255, 255, 255, 0.95), 10vw 8vh 2.5px rgba(255, 255, 255, 0.95), 15vw 15vh 1.5px rgba(255, 255, 255, 0.95),
+    22vw 22vh 1.5px rgba(255, 255, 255, 0.95), 28vw 12vh 2.5px rgba(255, 255, 255, 0.95), 32vw 32vh 1.5px rgba(255, 255, 255, 0.95),
+    38vw 18vh 2.5px rgba(255, 255, 255, 0.95), 42vw 35vh 1.5px rgba(255, 255, 255, 0.95), 48vw 25vh 2.5px rgba(255, 255, 255, 0.95),
+    53vw 42vh 1.5px rgba(255, 255, 255, 0.95), 58vw 15vh 2.5px rgba(255, 255, 255, 0.95), 63vw 38vh 1.5px rgba(255, 255, 255, 0.95),
+    68vw 28vh 2.5px rgba(255, 255, 255, 0.95), 73vw 45vh 1.5px rgba(255, 255, 255, 0.95), 78vw 32vh 2.5px rgba(255, 255, 255, 0.95),
+    83vw 48vh 1.5px rgba(255, 255, 255, 0.95), 88vw 20vh 2.5px rgba(255, 255, 255, 0.95), 93vw 52vh 1.5px rgba(255, 255, 255, 0.95),
+    98vw 35vh 2.5px rgba(255, 255, 255, 0.95), 5vw 60vh 1.5px rgba(255, 255, 255, 0.95), 12vw 65vh 2.5px rgba(255, 255, 255, 0.95),
+    18vw 72vh 1.5px rgba(255, 255, 255, 0.95), 25vw 78vh 2.5px rgba(255, 255, 255, 0.95), 30vw 85vh 1.5px rgba(255, 255, 255, 0.95),
+    35vw 68vh 2.5px rgba(255, 255, 255, 0.95), 40vw 82vh 1.5px rgba(255, 255, 255, 0.95), 45vw 92vh 2.5px rgba(255, 255, 255, 0.95),
+    50vw 75vh 1.5px rgba(255, 255, 255, 0.95), 55vw 88vh 2.5px rgba(255, 255, 255, 0.95), 60vw 95vh 1.5px rgba(255, 255, 255, 0.95),
+    65vw 72vh 2.5px rgba(255, 255, 255, 0.95), 70vw 85vh 1.5px rgba(255, 255, 255, 0.95), 75vw 78vh 2.5px rgba(255, 255, 255, 0.95),
+    80vw 92vh 1.5px rgba(255, 255, 255, 0.95), 85vw 82vh 2.5px rgba(255, 255, 255, 0.95), 90vw 88vh 1.5px rgba(255, 255, 255, 0.95),
+    95vw 75vh 2.5px rgba(255, 255, 255, 0.95);
   animation: twinkle 8s infinite linear;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
 }
 
 .shooting-star {
   position: absolute;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, white, transparent);
+  width: 120px;
+  height: 2.5px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1));
   animation: shoot 3s infinite ease-in;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
 }
 
 .shooting-star:nth-child(1) {
@@ -71,10 +73,10 @@
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.6;
   }
 }
 
@@ -93,15 +95,16 @@
 .stars::after {
   content: "";
   position: absolute;
-  width: 1px;
-  height: 1px;
-  background: white;
-  box-shadow: 8vw 12vh 2px white, 16vw 18vh 1px white, 24vw 25vh 2px white,
-    33vw 15vh 1px white, 41vw 28vh 2px white, 49vw 35vh 1px white,
-    57vw 22vh 2px white, 65vw 42vh 1px white, 73vw 28vh 2px white,
-    81vw 48vh 1px white, 89vw 32vh 2px white, 97vw 45vh 1px white,
-    3vw 68vh 2px white, 11vw 75vh 1px white, 19vw 82vh 2px white,
-    27vw 88vh 1px white, 35vw 72vh 2px white, 43vw 85vh 1px white,
-    51vw 92vh 2px white, 59vw 78vh 1px white;
+  width: 1.5px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 8vw 12vh 2.5px rgba(255, 255, 255, 0.95), 16vw 18vh 1.5px rgba(255, 255, 255, 0.95), 24vw 25vh 2.5px rgba(255, 255, 255, 0.95),
+    33vw 15vh 1.5px rgba(255, 255, 255, 0.95), 41vw 28vh 2.5px rgba(255, 255, 255, 0.95), 49vw 35vh 1.5px rgba(255, 255, 255, 0.95),
+    57vw 22vh 2.5px rgba(255, 255, 255, 0.95), 65vw 42vh 1.5px rgba(255, 255, 255, 0.95), 73vw 28vh 2.5px rgba(255, 255, 255, 0.95),
+    81vw 48vh 1.5px rgba(255, 255, 255, 0.95), 89vw 32vh 2.5px rgba(255, 255, 255, 0.95), 97vw 45vh 1.5px rgba(255, 255, 255, 0.95),
+    3vw 68vh 2.5px rgba(255, 255, 255, 0.95), 11vw 75vh 1.5px rgba(255, 255, 255, 0.95), 19vw 82vh 2.5px rgba(255, 255, 255, 0.95),
+    27vw 88vh 1.5px rgba(255, 255, 255, 0.95), 35vw 72vh 2.5px rgba(255, 255, 255, 0.95), 43vw 85vh 1.5px rgba(255, 255, 255, 0.95),
+    51vw 92vh 2.5px rgba(255, 255, 255, 0.95), 59vw 78vh 1.5px rgba(255, 255, 255, 0.95);
   animation: twinkle 6s infinite linear reverse;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
 }
