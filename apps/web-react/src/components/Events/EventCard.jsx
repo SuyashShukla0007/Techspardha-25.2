@@ -36,7 +36,7 @@ function EventCard({
   registerlink,
   detailedlink,
 }) {
-    // const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(false);
   const tagStyle =
     "bg-[#252525] text-gray-200 border border-gray-600/50 shadow-lg shadow-black/50";
 
@@ -62,26 +62,33 @@ function EventCard({
         </h3>
 
         {/* Description */}
-        {/* <div
-          className={`text-gray-400 text-sm sm:text-base mb-3 leading-relaxed transition-all duration-300 ${
-            expanded
-              ? "max-h-32 overflow-y-auto pr-1"
-              : "line-clamp-5 overflow-hidden"
-          }`}
-        >
-          {description}
-        </div>
+<div
+  className={`text-gray-400 text-sm sm:text-base mb-3 leading-relaxed transition-all duration-300 
+    ${expanded
+      ? "max-h-32 overflow-y-auto overflow-x-hidden pr-1"
+      : "line-clamp-5 overflow-hidden"
+    } 
+    [&::-webkit-scrollbar]:w-2 
+    [&::-webkit-scrollbar-track]:bg-transparent 
+    [&::-webkit-scrollbar-thumb]:bg-orange-500 
+    [&::-webkit-scrollbar-thumb]:rounded-full
+  `}
+>
+  {description}
+</div>
 
-          <button
-          onClick={() => setExpanded(!expanded)}
-          className="text-orange-500 text-sm font-medium hover:underline self-start mb-4"
-        >
-          {expanded ? "Read less" : "Read more"}
-        </button> */}
+<div className="w-full">
+  <button
+    onClick={() => setExpanded(!expanded)}
+    className="text-orange-500 text-sm font-medium hover:underline mb-4"
+  >
+    {expanded ? "Read less" : "Read more"}
+  </button>
+</div>
 
 
         {/* Description */}
-<div
+{/* <div
   className=" relative overflow-clip
     transition-all duration-500 ease-in-out
      group-hover:max-h-[600px]
@@ -96,7 +103,7 @@ function EventCard({
   >
     {description}
   </p>
-</div>
+</div> */}
 
 
 
