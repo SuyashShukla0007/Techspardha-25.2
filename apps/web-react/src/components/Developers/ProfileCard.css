@@ -123,7 +123,7 @@
   transform: translate3d(0, 0, 0.01px);
 }
 
-.pc-shine {
+/* .pc-shine {
   mask-image: var(--icon);
   mask-mode: luminance;
   mask-repeat: repeat;
@@ -256,7 +256,7 @@
   mix-blend-mode: overlay;
   filter: brightness(0.8) contrast(1.2);
   z-index: 4;
-}
+} */
 
 .pc-avatar-content {
   mix-blend-mode: screen;
